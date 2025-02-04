@@ -2,6 +2,8 @@
 Given a list of integers and a target sum, return the number of continuous subarrays that sum to sum. 
 For example, if the input is [1,1,1] and sum=2, the output should be 2.
 
+1, 1, 1, 2, 1, 2, 1
+
 Believe it or not, it is possible to do this with just one pass through the list! 
 In the brute force solution (computing every subarray sum) we end up doing a lot of repeat work,
 so our goal should be to calculate the values of subarrays only once.
@@ -16,4 +18,18 @@ Finally, return the number of subarrays found.
 '''
 
 def count_subarrays_with_sum(arr, sum):
-    pass
+    table = {}
+    out = 0
+    if arr == []:
+        return 0
+    for i in range(0, len(arr) + 1):
+        if hash(arr[:i]) - sum in table:
+            out += table[hash(arr[:i]) - sum]
+        if hash(arr[:i]) in table:
+            table[hash(arr[:i])] += 1
+        else:
+            table[hash(arr[:i])] = 1
+    return out
+
+def hash(arr):
+    return sum(arr)

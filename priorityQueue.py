@@ -1,6 +1,6 @@
 class PriorityQueue():
     def __init__(self):
-        self.queue = [100, 10, 5, 6 , 4, 3, 1, 2, 1]
+        self.queue = [10000000000000, 10, 5, 6 , 4, 3, 1, 2, 1]
     def parent(self, n):
         return n // 2
     def children(self, n):
@@ -18,6 +18,5 @@ class PriorityQueue():
     def display(self):
         print(self.queue)
 PQ = PriorityQueue()
-PQ.insert(45)
-print([100, 10, 5, 6 , 4, 3, 1, 2, 1])
+PQ.insert(5)
 PQ.display()
