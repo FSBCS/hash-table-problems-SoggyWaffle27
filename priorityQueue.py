@@ -1,6 +1,6 @@
 class PriorityQueue():
     def __init__(self):
-        self.queue = [10000000000000, 10, 5, 6 , 4, 3, 1, 2, 1]
+        self.queue = ["", 10, 5, 6 , 4, 3, 1, 2, 1]
     def parent(self, n):
         return n // 2
     def children(self, n):
@@ -10,7 +10,8 @@ class PriorityQueue():
         self.swap(len(self.queue)-1)
     def swap(self, n):
         parent = self.parent(n)
-        print(self.queue[parent], self.queue[n])
+        if self.queue[parent] == "":
+            return
         if self.queue[parent] < self.queue[n]:
             self.queue[parent], self.queue[n] = self.queue[n], self.queue[parent]
             self.swap(parent)

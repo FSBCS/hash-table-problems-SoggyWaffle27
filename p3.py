@@ -17,19 +17,18 @@ Here's the strategy. Loop over the elements of the list and:
 Finally, return the number of subarrays found.
 '''
 
-def count_subarrays_with_sum(arr, sum):
+def count_subarrays_with_sum(arr, target):
     table = {}
     out = 0
     if arr == []:
         return 0
     for i in range(0, len(arr) + 1):
-        if hash(arr[:i]) - sum in table:
-            out += table[hash(arr[:i]) - sum]
-        if hash(arr[:i]) in table:
-            table[hash(arr[:i])] += 1
+        if sum(arr[:i]) - target in table:
+            out += table[sum(arr[:i]) - target]
+        if sum(arr[:i]) in table:
+            table[sum(arr[:i])] += 1
         else:
-            table[hash(arr[:i])] = 1
+            table[sum(arr[:i])] = 1
     return out
 
-def hash(arr):
-    return sum(arr)
+print(count_subarrays_with_sum([1,2,3,4,3,2,5], 3))

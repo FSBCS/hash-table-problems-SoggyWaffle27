@@ -16,6 +16,7 @@ def k_most_frequent(lst, k):
             elements[i] = 1
     for i in elements:
         o.append((elements[i], i))
+    #[(elements[x], x) for x in elements.keys()]
     o.sort()
     print(o)
     while k != 0:
@@ -25,4 +26,24 @@ def k_most_frequent(lst, k):
         out.append(p[1])
     return out
 
-print(k_most_frequent([1, 1, 2, 2, 3, 3], 2))
+def k_most_frequent(lst, k):
+    if k > len(lst):
+        return lst
+    dict = {}
+    for element in lst:
+        dict[element] = dict.get(element, 0) + 1
+    dict = {k: v for k, v in sorted(dict.items(), key=lambda item: item[1], reverse = True)}
+    output, number  = [], []
+    for i in dict:
+        if len(number) != 0 and number[-1] != dict[i]:
+            k -= 1
+        output.append(i)
+        number.append(dict[i])
+        print(output, number, k)
+        if k == 1: 
+            return output
+    return output
+    
+
+
+print(k_most_frequent([1, 1, 2, 2, 1, 3], 2))
